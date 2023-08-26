@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Roger Federer",
+    "nationality": "switzerland",
+    "tour": "ATP",
+    "titles": 103,
+    "prizemoney": 130594339,
+    "id": "626c35264d1647c0a8c74f195268149f"
+  },
+  {
+    "name": "Rafael Nadal",
+    "nationality": "spain",
+    "tour": "ATP",
+    "titles": 92,
+    "prizemoney": 134640719,
+    "id": "719ea25f30ff47d9afea65fc1430fb20"
+  },
+  {
+    "name": "Novak Djokovic",
+    "nationality": "serbia",
+    "tour": "ATP",
+    "titles": 95,
+    "prizemoney": 172281484,
+    "id": "afaaec64d0894d72b703e5214dc4c396"
+  },
+  {
+    "name": "Andrew Murray",
+    "nationality": "scotland",
+    "tour": "ATP",
+    "titles": 46,
+    "prizemoney": 64000036,
+    "id": "946175400b3f4e00a084c16ea8bd2457"
+  },
+  {
+    "name": "Stanislas Wawrinka",
+    "nationality": "switzerland",
+    "tour": "ATP",
+    "titles": 16,
+    "prizemoney": 36183599,
+    "id": "9f4c228e97e64381b378fc6e2e04f5ed"
+  },
+  {
+    "name": "Serena Williams",
+    "nationality": "united states",
+    "tour": "WTA",
+    "titles": 73,
+    "prizemoney": 94816730,
+    "id": "457defa16a3c459fbf8c89e963611ad0"
+  },
+  {
+    "name": "Steffi Graf",
+    "nationality": "germany",
+    "tour": "WTA",
+    "titles": 107,
+    "prizemoney": 21895277,
+    "id": "11507c772b3d4fa7925b3d2056aacd24"
+  },
+  {
+    "name": "Maria Sharapova",
+    "nationality": "russia",
+    "tour": "WTA",
+    "titles": 36,
+    "prizemoney": 38777962,
+    "id": "9ea5a9c49c93459687c7fdd32a8b0863"
+  },
+  {
+    "name": "Venus Williams",
+    "nationality": "united states",
+    "tour": "WTA",
+    "titles": 49,
+    "prizemoney": 42403103,
+    "id": "5f3a1d70a3d040a292fd7a44f05add10"
+  },
+  {
+    "name": "Iga Świątek",
+    "nationality": "poland",
+    "tour": "WTA",
+    "titles": 15,
+    "prizemoney": 19630763,
+    "id": "06191ffa2c6b45dfb5f0a17b87635c76"
+  }
+]
