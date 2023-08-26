@@ -16,14 +16,13 @@ app.use(express.static('public'));
 // Middleware
 
 app.use((req: Request, res: Response, next: NextFunction) => {
-  debug('Soy un Middleware');
   next();
 });
 
 app.get('/', (req: Request, res: Response) => {
   debug('Hola Mundo');
-  res.write('<h1>Holaaaaa Kubo</h1>');
+
   res.end();
 });
 
-app.use('/tasks', taskRouter); // Importamos el taskRouter de la carpeta router.
+app.use('/players', taskRouter); // Importamos el taskRouter de la carpeta router.

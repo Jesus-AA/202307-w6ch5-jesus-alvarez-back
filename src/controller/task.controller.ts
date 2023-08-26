@@ -34,8 +34,17 @@ export class TaskController {
     res.json(newData);
   }
 
-  update(req: Request, res: Response) {
+  async update(req: Request, res: Response) {
     const { id } = req.params;
+    const newData = req.body;
+
+    const data: any[] = JSON.parse(
+      await readFile('data.json', { encoding: 'utf-8' })
+    );
+    const updateData = data.map((item) => (id === item.id ? newData : item));
+    await writeFile('data.json', JSON.stringify(updateData), {
+      encoding: 'utf-8',
+    });
     res.send(`Patch task id: ${id}`);
   }
 
