@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import { readFile, writeFile } from 'fs/promises';
 import { v4 as uuidv4 } from 'uuid';
 
-export class TaskController {
+export class PlayerController {
   async getAll(req: Request, res: Response) {
     const data = JSON.parse(await readFile('data.json', { encoding: 'utf-8' }));
     res.send(data);

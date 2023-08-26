@@ -2,7 +2,7 @@ import cors from 'cors';
 import createDebug from 'debug';
 import express, { NextFunction, Request, Response } from 'express';
 import morgan from 'morgan';
-import { taskRouter } from './router/task.router.js';
+import { playerRouter } from './router/player.router.js';
 
 export const app = express(); // Llamamos a express.
 
@@ -25,4 +25,4 @@ app.get('/', (req: Request, res: Response) => {
   res.end();
 });
 
-app.use('/players', taskRouter); // Importamos el taskRouter de la carpeta router.
+app.use('/players', playerRouter); // Importamos el taskRouter de la carpeta router.
