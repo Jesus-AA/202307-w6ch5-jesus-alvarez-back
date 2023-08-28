@@ -1,62 +1,62 @@
+/* eslint-disable no-unused-vars */
 import debug from 'debug';
-import { Request, Response } from 'express';
-import { readFile, writeFile } from 'fs/promises';
-import { v4 as uuidv4 } from 'uuid';
+import { NextFunction, Request, Response } from 'express';
+import { Player } from '../entities/player';
+import { Repository } from '../repository/repository';
+import { ControllerStructure } from './controller.interface';
 
-export class PlayerController {
-  async getAll(req: Request, res: Response) {
-    const data = JSON.parse(await readFile('data.json', { encoding: 'utf-8' }));
-    res.send(data);
+export class PlayerController implements ControllerStructure {
+  constructor(private repo: Repository<Player>) {
+    debug('Instantiated');
   }
 
-  async getById(req: Request, res: Response) {
-    const { id } = req.params;
-    debug(id);
-
-    const data: any[] = JSON.parse(
-      await readFile('data.json', { encoding: 'utf-8' })
-    );
-    const item = data.find((item) => item.id.toString() === id);
-    res.send(item);
+  async getAll(req: Request, res: Response, next: NextFunction) {
+    try {
+      const data = await this.repo.getAll();
+      res.json(data);
+    } catch (error) {
+      next(error);
+    }
   }
 
-  async create(req: Request, res: Response) {
-    const newData = req.body;
-    newData.id = uuidv4().replace(/-/g, '');
-    console.log(newData.id);
-    const data: any[] = JSON.parse(
-      await readFile('data.json', { encoding: 'utf-8' })
-    );
-    data.push(newData);
-
-    await writeFile('data.json', JSON.stringify(data), { encoding: 'utf-8' });
-
-    res.json(newData);
+  async getById(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.params;
+      const data = await this.repo.getById(id);
+      res.json(data);
+    } catch (error) {
+      next(error);
+    }
   }
 
-  async update(req: Request, res: Response) {
-    const { id } = req.params;
-    const newData = req.body;
-
-    const data: any[] = JSON.parse(
-      await readFile('data.json', { encoding: 'utf-8' })
-    );
-    const updateData = data.map((item) => (id === item.id ? newData : item));
-    await writeFile('data.json', JSON.stringify(updateData), {
-      encoding: 'utf-8',
-    });
-    res.send(`Patch task id: ${id}`);
+  async create(req: Request, res: Response, next: NextFunction) {
+    try {
+      const finalPlayer = await this.repo.create(req.body);
+      res.status(201);
+      res.json(finalPlayer);
+    } catch (error) {
+      next(error);
+    }
   }
 
-  async delete(req: Request, res: Response) {
-    const { id } = req.params;
-    debug(id);
+  async update(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.params;
+      const finalPlayer = await this.repo.update(id, req.body);
+      res.json(finalPlayer);
+    } catch (error) {
+      next(error);
+    }
+  }
 
-    const data: any[] = JSON.parse(
-      await readFile('data.json', { encoding: 'utf-8' })
-    );
-    const item = data.filter((item) => item.id !== id);
-    await writeFile('data.json', JSON.stringify(item), { encoding: 'utf-8' });
-    res.send(`Delete task id: ${id}`);
+  async delete(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.params;
+      await this.repo.delete(id);
+      res.status(204);
+      res.json({});
+    } catch (error) {
+      next(error);
+    }
   }
 }

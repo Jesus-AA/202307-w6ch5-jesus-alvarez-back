@@ -1,4 +1,4 @@
-type PlayerNoId = {
+export type PlayerNoId = {
   name: string;
   nationality: string;
   tour: string;
@@ -7,7 +7,7 @@ type PlayerNoId = {
   img: string;
 };
 
-type PlayerId = {
+export type PlayerId = {
   id: string;
 };
 
