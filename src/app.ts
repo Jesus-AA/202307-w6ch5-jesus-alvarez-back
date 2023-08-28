@@ -12,7 +12,7 @@ app.use(morgan('dev'));
 app.use(cors());
 
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static('public')); // Static agarra esa ruta para buscar cualquier cosa que se pida (en este caso en la carpeta public). Antes de seguir primero busca en la carpeta.
 // Middleware
 
 app.use((req: Request, res: Response, next: NextFunction) => {
