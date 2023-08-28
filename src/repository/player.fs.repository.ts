@@ -1,7 +1,7 @@
 import { readFile, writeFile } from 'fs/promises';
 import { v4 as uuidv4 } from 'uuid';
 import { Player, PlayerNoId } from '../entities/player';
-import { HttpError } from '../types/http.error';
+import { HttpError } from '../types/http.error.js';
 import { Repository } from './repository';
 
 export class PlayersFsRepository implements Repository<Player> {
