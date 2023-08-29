@@ -3,10 +3,13 @@ import createDebug from 'debug';
 import express, { NextFunction, Request, Response } from 'express';
 import morgan from 'morgan';
 import { errorMiddleware } from './middleware/error.middleware.js';
+import { filmRouter } from './router/film.router.js';
 import { playerRouter } from './router/player.router.js';
 
-export const app = express();
 const debug = createDebug('V25:App');
+export const app = express();
+
+debug('Started');
 
 app.use(morgan('dev'));
 app.use(cors());
@@ -25,5 +28,6 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.use('/players', playerRouter);
+app.use('/films', filmRouter);
 
 app.use(errorMiddleware);

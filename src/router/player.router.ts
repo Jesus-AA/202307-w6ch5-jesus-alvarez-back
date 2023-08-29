@@ -1,11 +1,13 @@
+import createDebug from 'debug';
 import { Router as createRouter } from 'express';
 import { PlayerController } from '../controller/player.controller.js';
 import { PlayersFsRepository } from '../repository/player.fs.repository.js';
 
+const debug = createDebug('V25:Router: PlayerRouter');
+
+debug('Loaded');
 const repo = new PlayersFsRepository();
-
 const playerController = new PlayerController(repo);
-
 export const playerRouter = createRouter();
 
 playerRouter.get('/', playerController.getAll.bind(playerController));
