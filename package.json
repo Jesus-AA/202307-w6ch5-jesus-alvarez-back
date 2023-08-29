@@ -12,8 +12,10 @@
     "build:prod": "npm install && tsc",
     "build": "tsc --watch",
     "start": "concurrently \"npm:server\" \"npm:build\"",
-    "test": "jest --watchAll --coverage",
-    "test:prod": "jest --watchAll --coverage --watchAll=false --passWithNoTests"
+    "test": "jest --coverage",
+    "test:prod": "jest --watchAll --coverage --watchAll=false --passWithNoTests",
+    "test:w": "jest --watchAll --coverage --collectCoverageFrom=src/todo/**/*.{ts,tsx}",
+    "test:fast": "jest --watchAll --coverage"
   },
   "keywords": [],
   "author": "Jesus Alvarez",
