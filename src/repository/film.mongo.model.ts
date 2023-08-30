@@ -21,4 +21,13 @@ const filmSchema = new Schema<Film>({
   },
 });
 
+filmSchema.set('toJSON', {
+  transform(_document, returnedObject) {
+    returnedObject.id = returnedObject._id;
+    delete returnedObject._id;
+    delete returnedObject.__v;
+    delete returnedObject.passwd;
+  },
+});
+
 export const FilmModel = model('Film', filmSchema, 'films');

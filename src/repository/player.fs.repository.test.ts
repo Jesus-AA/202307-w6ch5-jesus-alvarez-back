@@ -31,3 +31,9 @@ describe('Given the class PlayersFsRepository', () => {
     });
   });
 });
+
+describe('Given the class PlayerFsRepository', () => {
+  describe('When it is instantiated', () => {
+    const repo = new PlayersFsRepository();
+  });
+});
