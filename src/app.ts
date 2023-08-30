@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import { errorMiddleware } from './middleware/error.middleware.js';
 import { filmRouter } from './router/film.router.js';
 import { playerRouter } from './router/player.router.js';
+import { userRouter } from './router/user.router.js';
 
 const debug = createDebug('V25:App');
 export const app = express();
@@ -23,11 +24,12 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 app.get('/', (req: Request, res: Response) => {
   debug('Hola Mundo');
-  res.write('<h1>Champions</h1>');
+  res.write('<h1>Champions and Films </h1>');
   res.end();
 });
 
 app.use('/players', playerRouter);
 app.use('/films', filmRouter);
+app.use('/users', userRouter);
 
 app.use(errorMiddleware);

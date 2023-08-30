@@ -50,5 +50,15 @@ describe('Player controller', () => {
       delete: jest.fn(),
     } as unknown as PlayersFsRepository;
     const playerController = new PlayerController(mockRepo);
+
+    test('Should give error', async () => {
+      const mockRequest = {} as Request;
+      const mockResponse = { json: jest.fn() } as unknown as Response;
+      const mockNext = jest.fn();
+
+      await playerController.getAll(mockRequest, mockResponse, mockNext);
+      expect(mockRepo.getAll).toHaveBeenCalledWith();
+      expect(mockNext).toHaveBeenCalledWith(new Error('GetAll Error'));
+    });
   });
 });

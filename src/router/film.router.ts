@@ -13,6 +13,6 @@ export const filmRouter = createRouter();
 
 filmRouter.get('/', filmController.getAll.bind(filmController));
 filmRouter.get('/:id', filmController.getById.bind(filmController));
-filmRouter.post('/', filmController.create.bind(filmController));
+filmRouter.post('/:userId', filmController.create.bind(filmController));
 filmRouter.patch('/:id', filmController.update.bind(filmController));
 filmRouter.delete('/:id', filmController.delete.bind(filmController));

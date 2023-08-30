@@ -19,6 +19,10 @@ const filmSchema = new Schema<Film>({
     type: String,
     required: false,
   },
+  filmFan: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  },
 });
 
 filmSchema.set('toJSON', {
