@@ -12,7 +12,9 @@ export class FilmMongoRepository implements Repository<Film> {
   }
 
   async getAll(): Promise<Film[]> {
-    const data = await FilmModel.find().exec();
+    const data = await FilmModel.find()
+      .populate('filmFan', { userName: 1, email: 1 })
+      .exec();
     return data;
   }
 

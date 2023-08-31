@@ -15,9 +15,9 @@ export class FilmController extends Controller<Film> {
 
   async create(req: Request, res: Response, next: NextFunction) {
     try {
-      const { userId } = req.params;
+      const { validatedId } = req.body;
       const userRepo = new UserMongoRepository();
-      const user = await userRepo.getById(userId);
+      const user = await userRepo.getById(validatedId);
       req.body.author = user.id;
       const finalNote = await this.repo.create(req.body);
       user.films.push(finalNote);
