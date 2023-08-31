@@ -19,11 +19,11 @@ export class FilmController extends Controller<Film> {
       const userRepo = new UserMongoRepository();
       const user = await userRepo.getById(validatedId);
       req.body.author = user.id;
-      const finalNote = await this.repo.create(req.body);
-      user.films.push(finalNote);
+      const finalFilm = await this.repo.create(req.body);
+      user.films.push(finalFilm);
       userRepo.update(user.id, user);
       res.status(201);
-      res.json(finalNote);
+      res.json(finalFilm);
     } catch (error) {
       next(error);
     }

@@ -1,7 +1,10 @@
+import createDebug from 'debug';
 import { NextFunction, Request, Response } from 'express';
 import { FilmMongoRepository } from '../repository/film.mongo.repository.js';
 import { Auth } from '../services/auth.js';
 import { HttpError } from '../types/http.error.js';
+
+const debug = createDebug('V25:Router: FilmRouter');
 
 export class AuthInterceptor {
   authorization = (req: Request, _res: Response, next: NextFunction) => {
@@ -23,12 +26,14 @@ export class AuthInterceptor {
   };
 
   async filmAuthentication(req: Request, _res: Response, next: NextFunction) {
+    debug('authen');
     const userId = req.body.validatedId;
     const filmId = req.params.id;
-
+    debug(filmId + 'h');
     try {
       const filmRepo = new FilmMongoRepository();
       const film = await filmRepo.getById(filmId);
+
       if (!film.filmFan.id === userId) {
         const error = new HttpError(403, 'Forbidden');
         next(error);
